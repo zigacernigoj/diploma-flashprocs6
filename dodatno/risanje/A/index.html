@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CreateJS export from ~risanje[1]</title>
+
+<script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.4.0.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.6.0.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.3.0.min.js"></script>
+<script src="http://code.createjs.com/soundjs-0.4.0.min.js"></script>
+<script src="~risanje[1].js"></script>
+
+<script>
+var canvas, stage, exportRoot;
+
+function init() {
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var manifest = [
+		{src:"images/image66.jpg", id:"image66"},
+		{src:"sounds/sound13.mp3", id:"sound13"},
+		{src:"sounds/sound107.mp3", id:"sound107"},
+		{src:"sounds/sound1111.mp3", id:"sound1111"},
+		{src:"sounds/sound1212.mp3", id:"sound1212"},
+		{src:"sounds/sound1313.mp3", id:"sound1313"},
+		{src:"sounds/sound1414.mp3", id:"sound1414"},
+		{src:"sounds/sound1515.mp3", id:"sound1515"},
+		{src:"sounds/sound1616.mp3", id:"sound1616"},
+		{src:"sounds/sound1717.mp3", id:"sound1717"},
+		{src:"sounds/sound1818.mp3", id:"sound1818"},
+		{src:"sounds/sound1919.mp3", id:"sound1919"},
+		{src:"sounds/sound230.mp3", id:"sound230"},
+		{src:"sounds/sound202.mp3", id:"sound202"},
+		{src:"sounds/sound218.mp3", id:"sound218"},
+		{src:"sounds/sound2220.mp3", id:"sound2220"},
+		{src:"sounds/sound2321.mp3", id:"sound2321"},
+		{src:"sounds/sound2422.mp3", id:"sound2422"},
+		{src:"sounds/sound2523.mp3", id:"sound2523"},
+		{src:"sounds/sound2624.mp3", id:"sound2624"},
+		{src:"sounds/sound2725.mp3", id:"sound2725"},
+		{src:"sounds/sound2826.mp3", id:"sound2826"},
+		{src:"sounds/sound2927.mp3", id:"sound2927"},
+		{src:"sounds/sound331.mp3", id:"sound331"},
+		{src:"sounds/sound3028.mp3", id:"sound3028"},
+		{src:"sounds/sound3129.mp3", id:"sound3129"},
+		{src:"sounds/sound329.mp3", id:"sound329"},
+		{src:"sounds/sound44.mp3", id:"sound44"},
+		{src:"sounds/sound55.mp3", id:"sound55"},
+		{src:"sounds/sound66.mp3", id:"sound66"},
+		{src:"sounds/sound70.mp3", id:"sound70"},
+		{src:"sounds/sound81.mp3", id:"sound81"},
+		{src:"sounds/sound910.mp3", id:"sound910"}
+	];
+
+	var loader = new createjs.LoadQueue(false);
+	loader.installPlugin(createjs.Sound);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete() {
+	exportRoot = new lib.risanje1();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(30);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+
+function playSound(id, loop) {
+	createjs.Sound.play(id, createjs.Sound.INTERRUPT_EARLY, 0, 0, loop);
+}
+</script>
+</head>
+
+<body onload="init();" style="background-color:#D4D4D4">
+	<canvas id="canvas" width="800" height="600" style="background-color:#ffffff"></canvas>
+</body>
+</html>

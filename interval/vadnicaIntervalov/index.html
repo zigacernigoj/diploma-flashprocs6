@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CreateJS export from interval_engine.swf</title>
+
+<script src="http://code.createjs.com/easeljs-0.6.0.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.4.0.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.6.0.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.3.0.min.js"></script>
+<script src="http://code.createjs.com/soundjs-0.4.0.min.js"></script>
+<script src="interval_engine.swf.js"></script>
+
+<script>
+var canvas, stage, exportRoot;
+
+function init() {
+	canvas = document.getElementById("canvas");
+
+	var manifest = [
+		{src:"sounds/MP3sound1.mp3", id:"MP3sound1"},
+		{src:"sounds/MP3sound10.mp3", id:"MP3sound10"},
+		{src:"sounds/MP3sound11.mp3", id:"MP3sound11"},
+		{src:"sounds/MP3sound12.mp3", id:"MP3sound12"},
+		{src:"sounds/MP3sound13.mp3", id:"MP3sound13"},
+		{src:"sounds/MP3sound14.mp3", id:"MP3sound14"},
+		{src:"sounds/MP3sound15.mp3", id:"MP3sound15"},
+		{src:"sounds/MP3sound16.mp3", id:"MP3sound16"},
+		{src:"sounds/MP3sound17.mp3", id:"MP3sound17"},
+		{src:"sounds/MP3sound18.mp3", id:"MP3sound18"},
+		{src:"sounds/MP3sound19.mp3", id:"MP3sound19"},
+		{src:"sounds/MP3sound2.mp3", id:"MP3sound2"},
+		{src:"sounds/MP3sound20.mp3", id:"MP3sound20"},
+		{src:"sounds/MP3sound21.mp3", id:"MP3sound21"},
+		{src:"sounds/MP3sound22.mp3", id:"MP3sound22"},
+		{src:"sounds/MP3sound23.mp3", id:"MP3sound23"},
+		{src:"sounds/MP3sound24.mp3", id:"MP3sound24"},
+		{src:"sounds/MP3sound25.mp3", id:"MP3sound25"},
+		{src:"sounds/MP3sound26.mp3", id:"MP3sound26"},
+		{src:"sounds/MP3sound27.mp3", id:"MP3sound27"},
+		{src:"sounds/MP3sound28.mp3", id:"MP3sound28"},
+		{src:"sounds/MP3sound29.mp3", id:"MP3sound29"},
+		{src:"sounds/MP3sound3.mp3", id:"MP3sound3"},
+		{src:"sounds/MP3sound30.mp3", id:"MP3sound30"},
+		{src:"sounds/MP3sound31.mp3", id:"MP3sound31"},
+		{src:"sounds/MP3sound32.mp3", id:"MP3sound32"},
+		{src:"sounds/MP3sound33.mp3", id:"MP3sound33"},
+		{src:"sounds/MP3sound34.mp3", id:"MP3sound34"},
+		{src:"sounds/MP3sound35.mp3", id:"MP3sound35"},
+		{src:"sounds/MP3sound36.mp3", id:"MP3sound36"},
+		{src:"sounds/MP3sound37.mp3", id:"MP3sound37"},
+		{src:"sounds/MP3sound38.mp3", id:"MP3sound38"},
+		{src:"sounds/MP3sound39.mp3", id:"MP3sound39"},
+		{src:"sounds/MP3sound4.mp3", id:"MP3sound4"},
+		{src:"sounds/MP3sound40.mp3", id:"MP3sound40"},
+		{src:"sounds/MP3sound5.mp3", id:"MP3sound5"},
+		{src:"sounds/MP3sound6.mp3", id:"MP3sound6"},
+		{src:"sounds/MP3sound7.mp3", id:"MP3sound7"},
+		{src:"sounds/MP3sound8.mp3", id:"MP3sound8"},
+		{src:"sounds/MP3sound9.mp3", id:"MP3sound9"}
+	];
+
+	var loader = new createjs.LoadQueue(false);
+	loader.installPlugin(createjs.Sound);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(manifest);
+}
+
+function handleComplete() {
+	exportRoot = new lib.interval_engineswf();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(30);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+
+function playSound(id, loop) {
+	createjs.Sound.play(id, createjs.Sound.INTERRUPT_EARLY, 0, 0, loop);
+}
+</script>
+</head>
+
+<body onload="init();" style="background-color:#D4D4D4">
+	<canvas id="canvas" width="800" height="600" style="background-color:#ffffff"></canvas>
+</body>
+</html>
